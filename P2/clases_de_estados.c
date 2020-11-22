@@ -36,9 +36,22 @@ clase * clase_ini(int estado_ini, int tipo_estado)
     return c;
 }
 
+/*
+    GETTERS Y SETTERS 
+*/
 
 /*  funciones para la lista */ 
 
 
 
-/* funciones para borrar un id que hay que llamar a la estructura lista */ 
+/* 
+     funciones para borrar un id que hay que llamar a la estructura lista 
+     que hace falta crear unas funciones en esta
+     y despues de llamar a la funcion creadaactualizar tipo de la clase 
+*/ 
+
+/*
+    funciones para añadir un id y actualizar el tipo si fuese necesario
+*/ 
+
+

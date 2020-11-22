@@ -41,7 +41,7 @@ AFND * minimiza(AFND * afnd)
    */
    do{
       n_clases =  listSize(lista_clases);
-        for(int clase_actual = 0; clase_actual < listSize(lista_clases); calse_actual ++){
+        for(int clase_actual = 0; clase_actual < listSize(lista_clases); clase_actual ++){
             clase = divisor_clase(afnd, clase_actual);
             if(clase != NULL){
                 list_pushBack(lista_clases, clase);
@@ -88,3 +88,5 @@ AFND * crate_min_afd(AFND * afnd, List * lc)
 
     return afd_min;
 }
+
+/* FUNCIONES  DIVISION_INICIAL Y DIVISOR_CLASE  Y LAS NECESEARIAS PARA SU FUNCIONAMIENTO*/ 
