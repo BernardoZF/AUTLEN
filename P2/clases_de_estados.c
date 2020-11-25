@@ -45,9 +45,9 @@ clase * clase_ini(int estado_ini, int tipo_estado)
 
 
 /* 
-     funciones para borrar un id que hay que llamar a la estructura lista 
-     que hace falta crear unas funciones en esta
-     y despues de llamar a la funcion creadaactualizar tipo de la clase 
+    funciones para borrar un id que hay que llamar a la estructura lista 
+    que hace falta crear unas funciones en esta
+    y despues de llamar a la funcion creadaactualizar tipo de la clase 
 */ 
 
 /*
