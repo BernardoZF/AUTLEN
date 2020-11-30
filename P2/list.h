@@ -57,6 +57,8 @@ Bool list_Empty (const List* list);
 /* Devuelve la información almacenada en el nodo i-ésimo de la lista. En caso de error, devuelve NULL. */
 void* list_getElementInPos (const List* list, int index);
 
+void list_destroy_element_inpos(List * l, int index);
+
 /* Devuelve el número de elementos que hay en una lista. */
 int listSize (const List* list);
 

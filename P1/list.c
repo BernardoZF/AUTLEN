@@ -181,7 +181,7 @@ Status list_insertInOrder (List *list, const void *pelem){
     n=list->last;
     cmp=list->cmp_element_function(n->info,pelem);
 
-    if(cmp==0 || cmp==1){
+    if(cmp>=0){
       list_pushBack(list,pelem);
       return OK;
     }
@@ -194,14 +194,14 @@ Status list_insertInOrder (List *list, const void *pelem){
 
   if(tam>1){
     aux=list->last;
-    if(list->cmp_element_function(aux->info,pelem)==2){
+    if(list->cmp_element_function(aux->info,pelem)<=0){
       list_pushFront(list,pelem);
       return OK;
     }
     while(aux->next!=NULL){
       aux=aux->next;
     }
-    if(list->cmp_element_function(aux->info,pelem)==1){
+    if(list->cmp_element_function(aux->info,pelem)>0){
       list_pushBack(list,pelem);
       return OK;
     }
@@ -209,7 +209,7 @@ Status list_insertInOrder (List *list, const void *pelem){
     aux=NULL;
     aux=list->last;
     while(aux->next!=NULL){
-      if(list->cmp_element_function(aux->info,pelem)==2){
+      if(list->cmp_element_function(aux->info,pelem)){
         n=aux;
         aux->info=list->copy_element_function(pelem);
         aux->next=n;

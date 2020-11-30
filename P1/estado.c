@@ -61,9 +61,12 @@ void * estado_cpy(const void * src)
    if(!e){
       return NULL;
    }
-   for(int i= 0; i<listSize(estado_get_lista_estados(src)); i++){
-      list_insertInOrder(e->estados_componentes, list_getElementInPos(((estado *)src)->estados_componentes,i));
+   if(estado_get_lista_estados(src) != NULL){
+      for(int i= 0; i<listSize(estado_get_lista_estados(src)); i++){
+         list_insertInOrder(e->estados_componentes, list_getElementInPos(estado_get_lista_estados(src),i));
+      }
    }
+   
    for(int i= 0; i<listSize(estado_get_lista_transiciones(src)); i++){
       list_pushBack(e->transiciones, list_getElementInPos(((estado *)src)->transiciones,i));
    }

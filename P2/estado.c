@@ -57,6 +57,9 @@ void free_estado(void * e)
 void * estado_cpy(const void * src)
 {
    estado * e;
+   if(!src){
+      return NULL;
+   }
    e = new_estado(estado_get_id(src), estado_get_nombre(src), estado_get_tipo(src));
    if(!e){
       return NULL;

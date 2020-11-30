@@ -164,7 +164,6 @@ Status list_pushBack (List* list, const void *pelem){
 /* Inserta en orden en la lista realizando una copia del elemento.            */
 /******************************************************************************/
 Status list_insertInOrder (List *list, const void *pelem){
-
   NodeList *n=NULL,*aux=NULL;
   int tam=0,cmp=-1;
 
@@ -181,7 +180,7 @@ Status list_insertInOrder (List *list, const void *pelem){
     n=list->last;
     cmp=list->cmp_element_function(n->info,pelem);
 
-    if(cmp==0 || cmp==1){
+    if(cmp>=0){
       list_pushBack(list,pelem);
       return OK;
     }
@@ -194,14 +193,14 @@ Status list_insertInOrder (List *list, const void *pelem){
 
   if(tam>1){
     aux=list->last;
-    if(list->cmp_element_function(aux->info,pelem)==2){
+    if(list->cmp_element_function(aux->info,pelem)<=0){
       list_pushFront(list,pelem);
       return OK;
     }
     while(aux->next!=NULL){
       aux=aux->next;
     }
-    if(list->cmp_element_function(aux->info,pelem)==1){
+    if(list->cmp_element_function(aux->info,pelem)>0){
       list_pushBack(list,pelem);
       return OK;
     }
@@ -209,7 +208,7 @@ Status list_insertInOrder (List *list, const void *pelem){
     aux=NULL;
     aux=list->last;
     while(aux->next!=NULL){
-      if(list->cmp_element_function(aux->info,pelem)==2){
+      if(list->cmp_element_function(aux->info,pelem)){
         n=aux;
         aux->info=list->copy_element_function(pelem);
         aux->next=n;
@@ -292,6 +291,39 @@ void* list_getElementInPos (const List* list, int index){
   ele=n->info;
   
   return ele;
+}
+
+void list_destroy_element_inpos(List * l, int index){
+  NodeList *n=NULL;
+  NodeList *aux=NULL;
+
+  int cont=0;
+
+  if(!l || index<0 || list_Empty(l)==TRUE || listSize(l)< index+1 ) return;
+
+  n=l->last;
+
+  while(cont!=index -1 && n->next != NULL){
+    n=n->next;
+    cont++;
+  }
+  
+  if(n->next != NULL){
+    aux = n->next;
+    if(aux->next != NULL){
+      n->next = aux->next;
+    }else{
+      n->next = NULL;
+    }
+    nodeList_destroy(l, aux);
+  }
+
+  /*
+  aux = n->next;
+  n->next = aux->next;
+  nodeList_destroy(l, aux);*/
+  
+ 
 }
 
 /******************************************************************************/

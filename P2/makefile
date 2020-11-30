@@ -14,12 +14,12 @@ clean:
 val : 
 	@valgrind --leak-check=full ./main
 
-main: main.o transforma.o estado.o transicion.o list.o extrafunctions_int.o lib_afnd_64.a 
+main: main.o minimiza.o list.o extrafunctions_int.o clases_de_estados.o queue_fp.o lib_afnd_64.a 
 	@echo "#---------------------------"
 	@echo "# Generando $@ "
 	@echo "# Depende de $^"
 	@echo "# Ha cambiado $<"
-	$(CC) -o $@ $< $(LDFLAGS) $(LDLIBS) $(LIBS) transforma.o estado.o transicion.o list.o extrafunctions_int.o
+	$(CC) -o $@ $< $(LDFLAGS) $(LDLIBS) $(LIBS) minimiza.o list.o extrafunctions_int.o clases_de_estados.o queue_fp.o
 
 main.o: main.c  
 	@echo "#---------------------------"
@@ -29,22 +29,14 @@ main.o: main.c
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 
-transforma.o: transforma.c list.c estado.c transicion.c 
+minimiza.o: minimiza.c list.c clases_de_estados.c queue_fp.c
 	@echo "#---------------------------"
 	@echo "# Generando $@ "
 	@echo "# Depende de $^"
 	@echo "# Ha cambiado $<"
 	$(CC) -c -o $@ $< $(LDFLAGS) $(LDLIBS) $(LIBS)
 
-estado.o: estado.c list.c extrafunctions_int.c
-	@echo "#---------------------------"
-	@echo "# Generando $@ "
-	@echo "# Depende de $^"
-	@echo "# Ha cambiado $<"
-	$(CC) -c -o $@ $< $(LDFLAGS) $(LDLIBS) $(LIBS)
-
-
-transicion.o: transicion.c 
+clases_de_estados.o: clases_de_estados.c list.c extrafunctions_int.c
 	@echo "#---------------------------"
 	@echo "# Generando $@ "
 	@echo "# Depende de $^"
@@ -59,6 +51,13 @@ extrafunctions_int.o: extrafunctions_int.c
 	$(CC) $(CFLAGS) -c -o $@ $< 
 
 list.o: list.c 
+	@echo "#---------------------------"
+	@echo "# Generando $@ "
+	@echo "# Depende de $^"
+	@echo "# Ha cambiado $<"
+	$(CC) $(CFLAGS) -c -o $@ $< 
+
+queue_fp.o: queue_fp.c 
 	@echo "#---------------------------"
 	@echo "# Generando $@ "
 	@echo "# Depende de $^"
