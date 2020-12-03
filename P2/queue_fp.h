@@ -26,6 +26,8 @@ typedef void *(*copy_element_function_type)(const void*);
 **/
 typedef int (*print_element_function_type)(FILE *, const void*);
 
+typedef int (*cmp_element_function_type)(const void*, const void*);
+
 
 /**
 * @brief This function initializes an empty queue.
@@ -37,7 +39,7 @@ typedef int (*print_element_function_type)(FILE *, const void*);
 * pointer if insufficient memory is available to create the queue.
 */
 Queue* queue_init(free_element_function_type f1,
-copy_element_function_type f2, print_element_function_type f3);
+copy_element_function_type f2, print_element_function_type f3, cmp_element_function_type fn_cmp);
 
 
 /**

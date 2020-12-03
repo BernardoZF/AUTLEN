@@ -401,7 +401,7 @@ List * prog2_breadthFirst_adapted (AFND *afd)
     }
 
     /* Inicializacion de la cola para la busqueda en anchura y correspondiente  CDE*/
-    q=queue_init(extraint_free, extraint_copy, extraint_print);
+    q=queue_init(extraint_free, extraint_copy, extraint_print, extraint_cmp);
     if(!q){
         return NULL;
     }
